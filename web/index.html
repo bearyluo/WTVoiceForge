@@ -1,0 +1,1551 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>环境准备 · WT Voice Forge</title>
+  <link rel="stylesheet" href="/style.css?v=0.9.20d-ui">
+  <link rel="stylesheet" href="/theme.css?v=0.9.20d-ui">
+  <link rel="stylesheet" href="/manual.css?v=0.9.20d-ui">
+  <link rel="icon" type="image/png" sizes="128x128" href="/app-icon-128.png">
+  <meta name="theme-color" content="#e7e2d6">
+</head>
+<body>
+<svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4.2 18a8.5 8.5 0 1 1 15.6 0"/><path d="m12 13 3.5-3.2"/><circle cx="12" cy="13.4" r="1.3"/><path d="M4 18h16"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M13 2 4.5 13H11l-1 9L19.5 11H13Z"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M4 10v4M8 6.5v11M12 3v18M16 7v10M20 10v4"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.4"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.4"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.4"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 20h16"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.7-4M4 5v6h6M4 13a8 8 0 0 0 14.7 4M20 19v-6h-6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10" width="15" height="10.5" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 1.5v3M15 1.5v3M9 19.5v3M15 19.5v3M1.5 9h3M1.5 15h3M19.5 9h3M19.5 15h3"/></symbol>
+  <symbol id="i-gamepad" viewBox="0 0 24 24"><path d="M7 8h10a4 4 0 0 1 3.9 4.9l-.6 3a2.5 2.5 0 0 1-4.5 1.1L14.5 15h-5l-1.3 2a2.5 2.5 0 0 1-4.5-1.1l-.6-3A4 4 0 0 1 7 8Z"/><path d="M8 11v3M6.5 12.5h3M16 12h.01M18 14h.01"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M19 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5M12 17h.01"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v5M14 11v5"/></symbol>
+</svg>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#setup" aria-label="WT Voice Forge">
+      <img class="brand-logo" src="/app-icon.png" alt="">
+      <div class="brand-copy">
+        <div class="brand-name">WT Voice Forge</div>
+        <div class="brand-sub">WAR THUNDER · VOICE PACK</div>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="主导航">
+      <div class="nav-group">
+        <div class="nav-label">开始</div>
+        <a class="nav-item" data-route="setup" href="#setup" title="环境准备">
+          <svg class="icon nav-icon" aria-hidden="true"><use href="#i-shield"></use></svg><span class="nav-text">环境准备</span><span class="nav-tag" id="nav-setup-hint">第一步</span>
+        </a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-label">制作</div>
+        <a class="nav-item active" data-route="workbench" href="#workbench" title="工作台">
+          <svg class="icon nav-icon" aria-hidden="true"><use href="#i-gauge"></use></svg><span class="nav-text">工作台</span>
+        </a>
+        <a class="nav-item" data-route="voices" href="#voices" title="高级编辑">
+          <svg class="icon nav-icon" aria-hidden="true"><use href="#i-wave"></use></svg><span class="nav-text">高级编辑</span>
+        </a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-label">资源</div>
+        <a class="nav-item" data-route="packs" href="#packs" title="语音包">
+          <svg class="icon nav-icon" aria-hidden="true"><use href="#i-box"></use></svg><span class="nav-text">语音包</span>
+        </a>
+        <a class="nav-item" data-route="assets" href="#assets" title="游戏素材">
+          <svg class="icon nav-icon" aria-hidden="true"><use href="#i-grid"></use></svg><span class="nav-text">游戏素材</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="side-card">
+        <div class="side-card-head"><span class="side-dot"></span><span>本地模式</span></div>
+        <p>素材、模型和导出包只留在这台电脑。</p>
+        <button class="side-link" type="button" data-open-folder="data">
+          <span>打开数据目录</span>
+          <svg class="icon" aria-hidden="true"><use href="#i-folder"></use></svg>
+        </button>
+        <div class="side-card-sep"></div>
+        <button class="side-uninstall" type="button" id="open-uninstall" title="卸载程序和数据">
+          <svg class="icon" aria-hidden="true"><use href="#i-trash"></use></svg><span>卸载软件</span>
+        </button>
+      </div>
+      <div class="side-meta"><span id="version-label">v0.9.20 · M7.20</span><span>LOCAL ONLY</span></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="page-view" id="page-setup" hidden>
+      <header class="page-head">
+        <div class="page-head-main">
+          <span class="page-badge"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+          <div>
+            <div class="page-kicker">开始 <b>/</b> 本机检查</div>
+            <h1>环境准备</h1>
+            <p class="sub">先看这台电脑缺什么。必需组件能在这里直接下载；目录选一次就会记住。</p>
+          </div>
+        </div>
+        <div class="head-actions">
+          <span class="status-pill" id="setup-status"><span class="dot"></span> 检测中</span>
+          <button class="btn ghost" id="setup-refresh-btn" type="button">重新检测</button>
+          <a class="btn" href="#workbench">开始制作</a>
+        </div>
+      </header>
+
+      <section class="card setup-hero">
+        <div class="setup-hero-copy">
+          <span class="setup-kicker"><img src="/assets/emoji/1f338.svg" alt=""> FIRST START <b>/</b> 第一步</span>
+          <h2 id="setup-headline">正在检查本机环境…</h2>
+          <p id="setup-detail">检测游戏目录、语音引擎、构建工具和磁盘空间；缺什么会列在这里。</p>
+          <div class="setup-checks" id="setup-checks"></div>
+        </div>
+        <div class="setup-hero-side">
+          <div class="setup-disk" id="setup-disk">磁盘空间读取中…</div>
+          <a class="btn ghost" href="#workbench" id="setup-skip">开始制作</a>
+        </div>
+      </section>
+
+      <section class="card setup-components" id="setup-components">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">必要组件</div>
+            <h2>缺什么，直接在这里补</h2>
+            <p class="sub">GPT-SoVITS 和 RVC 可以在应用内下载；FMOD 与官方工程受许可约束，打开官方页面下载。</p>
+          </div>
+          <span class="pill subtle" id="setup-component-pill">检查中</span>
+        </div>
+
+        <div class="setup-rows">
+          <div class="setup-row" id="setup-row-gpt">
+            <span class="setup-row-icon"><svg class="icon" aria-hidden="true"><use href="#i-cpu"></use></svg></span>
+            <div class="setup-row-main">
+              <div class="setup-row-title"><strong>GPT-SoVITS 语音引擎</strong><span class="pill subtle" id="setup-gpt-pill">检查中</span></div>
+              <p class="hint" id="setup-gpt-note">中文配音和音色克隆必需；压缩包约 7.5 GB，下载后自动校验和解压。</p>
+            </div>
+            <div class="setup-row-action">
+              <button class="btn small" id="setup-gpt-btn" type="button">查看安装</button>
+              <button class="btn ghost small" id="setup-gpt-uninstall" type="button" hidden>卸载引擎</button>
+            </div>
+          </div>
+
+          <div class="setup-row" id="setup-row-rvc">
+            <span class="setup-row-icon"><svg class="icon" aria-hidden="true"><use href="#i-wave"></use></svg></span>
+            <div class="setup-row-main">
+              <div class="setup-row-title"><strong>RVC 换声引擎 <span class="pill subtle">可选</span></strong><span class="pill subtle" id="setup-rvc-pill">检查中</span></div>
+              <p class="hint" id="setup-rvc-note">只在“原语言只换音色”时需要；不做换声可以先跳过。</p>
+              <div class="setup-progress" id="setup-rvc-progress" hidden>
+                <div class="progress-bar"><span id="setup-rvc-fill"></span></div>
+                <div class="progress-text" id="setup-rvc-text"></div>
+              </div>
+            </div>
+            <div class="setup-row-action">
+              <button class="btn ghost small" id="setup-rvc-btn" type="button" hidden>下载并安装</button>
+              <button class="btn ghost small" id="setup-rvc-cancel" type="button" hidden>取消</button>
+              <button class="btn ghost small" id="setup-rvc-uninstall" type="button" hidden>卸载引擎</button>
+            </div>
+          </div>
+
+          <div class="setup-row" id="setup-row-fmod">
+            <span class="setup-row-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg></span>
+            <div class="setup-row-main">
+              <div class="setup-row-title"><strong>FMOD Studio CLI</strong><span class="pill subtle" id="setup-fmod-pill">检查中</span></div>
+              <p class="hint" id="setup-fmod-note">构建 bank 必需；需要 Firelight 账号，因此从官方页面下载。</p>
+            </div>
+            <div class="setup-row-action"><a class="btn ghost small" href="https://www.fmod.com/download" target="_blank" rel="noreferrer" data-external>官方下载</a></div>
+          </div>
+
+          <div class="setup-row" id="setup-row-kit">
+            <span class="setup-row-icon"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg></span>
+            <div class="setup-row-main">
+              <div class="setup-row-title"><strong>战雷官方 FMOD 工程</strong><span class="pill subtle" id="setup-kit-pill">检查中</span></div>
+              <p class="hint" id="setup-kit-note">事件名、素材路径和分类都来自这里；只读，不会修改原工程。</p>
+            </div>
+            <div class="setup-row-action">
+              <a class="btn ghost small" href="https://github.com/GaijinEntertainment/fmod_studio_warthunder_for_modders" target="_blank" rel="noreferrer" data-external>官方工程</a>
+              <button class="btn ghost small" id="setup-kit-btn" type="button">去选择</button>
+            </div>
+          </div>
+
+          <div class="setup-row" id="setup-row-vgm">
+            <span class="setup-row-icon"><svg class="icon" aria-hidden="true"><use href="#i-database"></use></svg></span>
+            <div class="setup-row-main">
+              <div class="setup-row-title"><strong>vgmstream 解包器</strong><span class="pill subtle" id="setup-vgm-pill">检查中</span></div>
+              <p class="hint" id="setup-vgm-note">用于从游戏 bank 取出原音；打包版已内置，不需要单独安装。</p>
+            </div>
+            <div class="setup-row-action"><span class="pill subtle" id="setup-vgm-badge">内置</span></div>
+          </div>
+
+          <div class="setup-row" id="setup-row-game">
+            <span class="setup-row-icon"><svg class="icon" aria-hidden="true"><use href="#i-gamepad"></use></svg></span>
+            <div class="setup-row-main">
+              <div class="setup-row-title"><strong>战雷游戏目录</strong><span class="pill subtle" id="setup-game-pill">检查中</span></div>
+              <p class="hint" id="setup-game-note">用来读取原音，并把成品写入 sound/mod；游戏目录本身只读。</p>
+            </div>
+            <div class="setup-row-action"><button class="btn ghost small" id="setup-game-btn" type="button">去选择</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card setup-storage" id="setup-storage">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">DISK USAGE</div>
+            <h2>硬盘占用</h2>
+            <p class="sub">统计 <span class="mono" id="storage-path">data</span> 占用的硬盘空间；这里是磁盘，不是运行内存，单位与 Windows 资源管理器一致。</p>
+          </div>
+          <div class="storage-head">
+            <span class="pill subtle" id="storage-total">统计中…</span>
+            <button class="btn ghost small" id="storage-clean-btn" type="button" hidden>清理可回收空间</button>
+            <button class="btn ghost small" id="storage-refresh-btn" type="button">重新统计</button>
+            <button class="btn ghost small" type="button" data-open-folder="data">打开数据目录</button>
+          </div>
+        </div>
+        <div class="storage-overview">
+          <div class="storage-bar" id="storage-bar"><span class="storage-placeholder"></span></div>
+          <div class="storage-meta">
+            <span id="storage-summary-text">正在后台统计，界面可以先继续用。</span>
+            <span id="storage-free">磁盘剩余 —</span>
+          </div>
+        </div>
+        <div class="storage-list" id="storage-list">
+          <p class="hint small">第一次统计需要扫一遍 data 目录，通常几秒。</p>
+        </div>
+      </section>
+
+      <div class="system-block">
+      <div class="section-bar">
+        <div>
+          <div class="eyebrow">目录与高级设置</div>
+          <strong>手动换路径，或指定已有的运行时</strong>
+        </div>
+        <span class="hint small">选一次就会记住，之后自动检查</span>
+      </div>
+      <details class="card setup-panel" id="setup-panel">
+        <summary>
+          <span>游戏与素材环境</span>
+          <span class="pill subtle" id="setup-pill">检查中</span>
+        </summary>
+        <div class="setup-body">
+          <p class="hint">第一次使用时选一次，之后程序会记住。已经就绪时这里会自动折叠。</p>
+          <div class="grid status-grid">
+          <article class="card">
+            <div class="card-top"><span class="card-kicker">GAME</span><span class="pill" id="game-pill">未选择</span></div>
+            <h2>战雷目录</h2>
+            <div class="card-main" id="game-status"><p class="muted">扫描中…</p></div>
+            <div class="field-row">
+              <input id="game-path" class="input" type="text" placeholder="例如 D:\SteamLibrary\steamapps\common\War Thunder" spellcheck="false">
+              <button class="btn ghost small" id="game-browse-btn" type="button">浏览</button>
+              <button class="btn" id="game-use-btn" type="button">使用此目录</button>
+            </div>
+            <div id="game-installs" class="stack"></div>
+          </article>
+
+          <article class="card">
+            <div class="card-top"><span class="card-kicker">KIT</span><span class="pill" id="kit-pill">未选择</span></div>
+            <h2>官方素材工程</h2>
+            <p class="hint">官方 FMOD 工程，提供事件名、素材路径和分类；不是游戏目录。</p>
+            <div class="card-main" id="kit-status"><p class="muted">扫描中…</p></div>
+            <div class="field-row">
+              <input id="kit-path" class="input" type="text" placeholder="选择 fmod_studio_warthunder_for_modders 目录" spellcheck="false">
+              <button class="btn ghost small" id="kit-browse-btn" type="button">浏览</button>
+              <button class="btn" id="kit-use-btn" type="button">检测并使用</button>
+            </div>
+            <details class="details">
+              <summary>自动发现的工程</summary>
+              <div id="kit-candidates" class="stack"><span class="muted small">没有自动找到，填一次路径就行。</span></div>
+            </details>
+          </article>
+
+        </div>
+
+        <details class="card setup-advanced" id="ai-engine">
+          <summary>
+            <span>AI 引擎 / GPT-SoVITS</span>
+            <span class="pill subtle" id="gpu-pill">检测中</span>
+          </summary>
+          <div class="advanced-body">
+            <p class="hint">本地文本转语音运行时。装好才能合成台词；不影响浏览和解包。</p>
+            <div class="card-main" id="gpu-status"><p class="muted">检测中…</p></div>
+            <div class="card-main" id="engine-status"></div>
+            <div class="field-row">
+              <input id="engine-path" class="input" type="text" placeholder="已有 GPT-SoVITS 目录（可选）" spellcheck="false">
+              <button class="btn ghost small" id="engine-browse-btn" type="button">浏览</button>
+              <button class="btn" id="engine-use-btn" type="button">检测并使用</button>
+            </div>
+
+            <div class="installer" id="engine-install" hidden>
+              <div class="installer-head">
+                <h3>安装 GPT-SoVITS 运行时</h3>
+                <span class="pill subtle" id="engine-install-hint">未安装</span>
+              </div>
+              <div class="installer-body">
+                <label class="field-label" for="engine-package">运行时包</label>
+                <select id="engine-package" class="input select"></select>
+                <div class="hint" id="engine-package-note"></div>
+
+                <label class="field-label" for="engine-target">安装位置</label>
+                <div class="field-row tight">
+                  <input id="engine-target" class="input" type="text" spellcheck="false">
+                  <button class="btn ghost small" id="engine-target-browse" type="button">浏览</button>
+                </div>
+
+                <div class="install-meta" id="engine-install-meta"></div>
+
+                <div class="field-row tight">
+                  <select id="engine-source" class="input select" aria-label="下载源">
+                    <option value="auto">下载源：自动（官方 → 镜像）</option>
+                    <option value="official">下载源：Hugging Face 官方</option>
+                    <option value="mirror">下载源：hf-mirror 镜像</option>
+                  </select>
+                  <label class="check"><input type="checkbox" id="engine-keep-archive"> 保留压缩包</label>
+                </div>
+                <label class="check"><input type="checkbox" id="engine-slim"> 精简安装：去掉自动听写和人声分离（少约 1.9 GB）</label>
+                <p class="hint small" id="engine-slim-note">精简后不能自动识别参考文字或分离人声；需要时重新安装完整版即可。解压时仍要预留完整空间。</p>
+
+                <div class="field-row tight">
+                  <button class="btn" id="engine-download-btn" type="button">下载并安装</button>
+                  <button class="btn ghost" id="engine-cancel-btn" type="button" hidden>取消</button>
+                </div>
+
+                <div class="progress-wrap" id="engine-progress" hidden>
+                  <div class="progress-bar"><span id="engine-progress-fill"></span></div>
+                  <div class="progress-text" id="engine-progress-text">准备中…</div>
+                </div>
+
+                <p class="hint">
+                  一键从 Hugging Face 官方仓库 <span class="mono">lj1995/GPT-SoVITS-windows-package</span>
+                  下载 GPT-SoVITS v4 Windows 整合包（约 7.5 GB）；官方源失败会自动切到
+                  <span class="mono">hf-mirror.com</span> 镜像。下载显示速度与剩余时间，
+                  SHA-256 校验和解压显示阶段进度，完成后自动解压并启用。
+                  只下载运行时，不上传任何游戏素材或本地文件。
+                </p>
+              </div>
+            </div>
+          </div>
+        </details>
+        </div>
+      </details>
+    </div>
+    </div>
+
+    <div class="page-view" id="page-workbench">
+      <header class="page-head">
+        <div class="page-head-main">
+          <span class="page-badge"><svg class="icon" aria-hidden="true"><use href="#i-gauge"></use></svg></span>
+          <div>
+            <div class="page-kicker">WT VOICE FORGE <b>/</b> 制作</div>
+            <h1>工作台</h1>
+            <p class="sub">素材、训练、生成和应用都在这一页完成。按四步走，不用来回切页面。</p>
+          </div>
+        </div>
+        <div class="head-actions">
+          <span class="status-pill" id="global-status"><span class="dot"></span> 正在读取环境</span>
+          <a class="btn ghost" href="#setup">环境准备</a>
+          <button class="btn ghost" id="refresh-btn" type="button">重新检测</button>
+        </div>
+      </header>
+
+      <div class="banner error" id="error-banner" hidden></div>
+
+      <section class="hero-panel workbench-hero">
+        <div class="hero-copy">
+          <div class="hero-kicker">WAR THUNDER · VOICE PACK STUDIO</div>
+          <h2>四步做出可安装的语音包</h2>
+          <p>导入素材 → 训练音色 → 生成语音 → 构建并装进游戏。素材、模型和成品都只留在这台电脑。</p>
+          <div class="hero-facts">
+            <span><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>10 国 / 61 张乘员表</span>
+            <span><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>68 种座舱提示音</span>
+            <span><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg>本地处理，不上传</span>
+          </div>
+        </div>
+        <div class="hero-signal hero-stickers" aria-hidden="true">
+          <div class="sticker-sheet">
+            <span class="sticker sticker-plane">
+              <img class="vehicle-icon" src="/assets/icons/jet-fighter.svg" alt="">
+              <b>空战组</b>
+            </span>
+            <span class="sticker sticker-tank">
+              <img class="vehicle-icon" src="/assets/icons/tank.svg" alt="">
+              <b>陆战组</b>
+            </span>
+            <span class="sticker sticker-bubble">无线电，交给我们！</span>
+            <span class="sticker-note mono">VOICE FORGE / 04</span>
+            <i class="sticker sticker-heart"><img src="/assets/emoji/1f493.svg" alt=""></i>
+            <i class="sticker sticker-sakura"><img src="/assets/emoji/1f338.svg" alt=""></i>
+            <i class="sticker sticker-spark"><img src="/assets/emoji/2728.svg" alt=""></i>
+          </div>
+        </div>
+      </section>
+
+      <div class="workbench-wizard" id="workbench-wizard">
+      <div class="quick-workflow" id="quick-workflow" role="navigation" aria-label="制作步骤">
+        <button class="wf-step active" type="button" data-target="quick-step-1">
+          <span class="wf-num">01</span><span><strong>素材</strong><small>导入、试听、整理</small></span>
+        </button>
+        <button class="wf-step" type="button" data-target="quick-step-2">
+          <span class="wf-num">02</span><span><strong>训练</strong><small>微调或零样本</small></span>
+        </button>
+        <button class="wf-step" type="button" data-target="quick-step-3">
+          <span class="wf-num">03</span><span><strong>生成</strong><small>选声音、改台词、试听</small></span>
+        </button>
+        <button class="wf-step" type="button" data-target="quick-step-4">
+          <span class="wf-num">04</span><span><strong>应用</strong><small>构建、备份、装进游戏</small></span>
+        </button>
+        <div class="wf-actions"><span class="wf-state" id="quick-wf-state">第 1 步 / 共 4 步</span></div>
+      </div>
+
+      <div class="quick-coach" id="quick-coach">
+        <span class="quick-coach-face" id="quick-coach-face">
+          <img src="/assets/emoji/1f338.svg" alt="">
+        </span>
+        <div class="quick-coach-bubble">
+          <span class="quick-coach-tag" id="quick-coach-tag">工作台 · 通讯员</span>
+          <strong id="quick-coach-title">先放一段干净的人声</strong>
+          <p id="quick-coach-text">3–10 秒、没有背景音乐。导入后点 ▶ 试听，顺手删掉不满意的。</p>
+        </div>
+        <span class="quick-coach-spark" aria-hidden="true">
+          <img src="/assets/emoji/1f493.svg" alt="">
+          <img src="/assets/emoji/1f338.svg" alt="">
+        </span>
+      </div>
+
+      <div class="quick-steps">
+        <section class="card quick-step" id="quick-step-1" data-step="01">
+          <div class="quick-step-head">
+            <span class="step-num">1</span>
+            <div class="quick-step-title">
+              <h2>添加素材</h2>
+              <p class="sub">导入参考音频，先试听确认。默认自动裁掉首尾静音，长素材可以切片。</p>
+            </div>
+            <span class="pill subtle" id="quick-voice-pill">未选择</span>
+          </div>
+
+          <div class="quick-two-col">
+            <label class="field">
+              <span class="voice-label">使用已有音色</span>
+              <select id="quick-project-select" class="input"></select>
+            </label>
+            <div class="quick-new-project">
+              <input id="quick-new-name" class="input" type="text" placeholder="新音色名称，例如：涂山苏苏" spellcheck="false">
+              <button class="btn ghost" id="quick-create-btn" type="button">新建</button>
+            </div>
+          </div>
+
+          <div class="quick-engine" id="quick-engine-box" hidden>
+            <div class="quick-engine-main">
+              <span class="pill warn" id="quick-engine-badge">GPT-SoVITS 未安装</span>
+              <div class="quick-engine-copy">
+                <strong>先装 GPT-SoVITS，才能合成和训练</strong>
+                <p class="hint small">
+                  一键下载 v4 Windows 整合包（约 7.5 GB，装到数据目录）；官方源失败会自动切到
+                  <span class="mono">hf-mirror.com</span> 镜像。下载、SHA-256 校验和解压都有进度，
+                  只下载运行时，不上传任何游戏素材或本地文件。
+                </p>
+              </div>
+              <button class="btn" id="quick-engine-install" type="button">一键下载并安装</button>
+            </div>
+            <div class="progress-wrap" id="quick-engine-progress" hidden>
+              <div class="progress-bar"><span id="quick-engine-fill"></span></div>
+              <div class="progress-text" id="quick-engine-text"></div>
+              <div><button class="btn ghost small" id="quick-engine-cancel" type="button">取消下载</button></div>
+            </div>
+          </div>
+
+          <div class="quick-ref-line">
+            <button class="btn" id="quick-import-btn" type="button">导入素材文件夹</button>
+            <button class="btn ghost" id="quick-add-files-btn" type="button">添加音频文件</button>
+            <button class="btn ghost" id="quick-detect-btn" type="button">自动识别参考文字</button>
+            <span class="pill subtle" id="quick-ref-pill">没有参考音频</span>
+            <span class="hint small" id="quick-ref-status"></span>
+          </div>
+
+          <div class="quick-ref-list" id="quick-ref-list"></div>
+
+          <label class="field">
+            <span class="voice-label">参考音频的文字（需要和录音逐字一致）</span>
+            <textarea id="quick-prompt" class="input textarea" rows="2" placeholder="例如：道士哥哥，苏苏来了"></textarea>
+          </label>
+
+          <details class="quick-material-clean" id="quick-material-clean">
+            <summary>素材整理（默认裁掉首尾静音，可选切片）</summary>
+            <div class="quick-clean-grid">
+              <label class="check-inline"><input type="checkbox" id="quick-clean-trim" checked> 裁掉首尾静音</label>
+              <label class="check-inline"><input type="checkbox" id="quick-clean-split"> 长素材切片</label>
+              <label class="check-inline">每段不超过 <input id="quick-clean-max" class="input tiny" type="number" min="5" max="120" value="30"> 秒</label>
+            </div>
+            <div class="quick-clean-actions">
+              <button class="btn ghost small" id="quick-clean-btn" type="button">整理素材</button>
+              <span class="hint small" id="quick-clean-status">整理只处理 WAV；原始文件会保存在 reference/_原始，可随时恢复。</span>
+            </div>
+          </details>
+
+          <div class="quick-step-nav">
+            <button class="btn ghost small" type="button" data-quick-step="quick-step-3">直接生成语音</button>
+            <button class="btn ghost small" type="button" data-quick-step="quick-step-2">下一步：训练音色</button>
+          </div>
+        </section>
+
+        <section class="card quick-step" id="quick-step-2" data-step="02" hidden>
+          <div class="quick-step-head">
+            <span class="step-num">2</span>
+            <div class="quick-step-title">
+              <h2>训练音色</h2>
+              <p class="sub">素材 3 段以上、累计约 1 分钟时训练更稳；素材少也可以先用零样本试听。</p>
+            </div>
+            <span class="pill subtle" id="quick-train-pill">等待素材</span>
+          </div>
+
+          <div class="quick-train-row">
+            <button class="btn" id="quick-train-btn" type="button">训练专属音色</button>
+            <button class="btn ghost" id="quick-import-model-btn" type="button">导入已有权重</button>
+            <span class="hint small" id="quick-model-hint">还没有选择音色</span>
+          </div>
+          <div class="progress-wrap" id="quick-train-progress" hidden>
+            <div class="progress-bar"><span id="quick-train-fill"></span></div>
+            <div class="progress-text" id="quick-train-text"></div>
+            <div><button class="btn ghost small" id="quick-train-cancel" type="button">取消训练</button></div>
+          </div>
+          <details class="details quality-guide">
+            <summary>声音不满意？按这个顺序排查（官方 / 社区经验）</summary>
+            <ol class="quality-list">
+              <li><strong>参考音频</strong>：单人干声，无音乐和混响。微调建议累计 1 分钟左右。</li>
+              <li><strong>参考文字</strong>：必须和录音逐字一致，错字会带偏咬字。</li>
+              <li><strong>训练轮数</strong>：默认 GPT 15 轮 / SoVITS 2 轮。素材少时，先补干净素材比加轮数有效。</li>
+              <li><strong>合成</strong>：先用默认采样和 1 版。吞字就拆短句，重复就换种子。</li>
+              <li><strong>仍不满意</strong>：换一段情绪接近、3–10 秒的参考再试。</li>
+              <li><strong>游戏原音</strong>：底噪重时，先分离人声或降噪再训练。</li>
+            </ol>
+          </details>
+
+          <div class="quick-subhead">
+            <div>
+              <h3>试听一句</h3>
+              <p class="hint small">用一句中文检查咬字、语气和音色；不满意就回上一步补素材或重新训练。</p>
+            </div>
+            <span class="pill subtle" id="quick-preview-pill">等待音色</span>
+          </div>
+          <div class="quick-preview-input">
+            <textarea id="quick-preview-text" class="input textarea" rows="2">收到，正在前往目标区域。</textarea>
+            <button class="btn" id="quick-preview-btn" type="button">生成试听</button>
+          </div>
+          <div class="progress-wrap" id="quick-preview-progress" hidden>
+            <div class="progress-bar"><span id="quick-preview-fill"></span></div>
+            <div class="progress-text" id="quick-preview-text-status"></div>
+          </div>
+          <div class="quick-preview-player">
+            <audio id="quick-preview-audio" controls preload="none"></audio>
+            <span class="hint small" id="quick-preview-label">还没有试听音频</span>
+          </div>
+
+          <div class="quick-step-nav">
+            <button class="btn ghost small" type="button" data-quick-step="quick-step-1">上一步：素材</button>
+            <button class="btn ghost small" type="button" data-quick-step="quick-step-3">下一步：生成语音</button>
+          </div>
+        </section>
+
+        <section class="card quick-step" id="quick-step-3" data-step="03" hidden>
+          <div class="quick-step-head">
+            <span class="step-num">3</span>
+            <div class="quick-step-title">
+              <h2>生成语音</h2>
+              <p class="sub">先选要替换的游戏声音，再准备台词；逐句试听，有问题单句重做。</p>
+            </div>
+            <span class="pill subtle" id="quick-select-pill">未选择</span>
+          </div>
+
+          <div class="preset-grid" id="quick-presets" aria-label="场景预设">
+            <button class="preset-card" type="button" data-preset="air">
+              <span class="preset-art">
+                <img class="vehicle-icon" src="/assets/icons/jet-fighter.svg" alt="">
+              </span>
+              <strong>空战语音包</strong>
+              <span class="preset-meta">通用 + 空勤 + 战报</span>
+              <span class="preset-stamp">VOICE FORGE · 01</span>
+            </button>
+            <button class="preset-card" type="button" data-preset="ground">
+              <span class="preset-art">
+                <img class="vehicle-icon" src="/assets/icons/tank.svg" alt="">
+              </span>
+              <strong>陆战语音包</strong>
+              <span class="preset-meta">通用 + 陆战乘员</span>
+              <span class="preset-stamp">VOICE FORGE · 02</span>
+            </button>
+            <button class="preset-card" type="button" data-preset="naval">
+              <span class="preset-art">
+                <img class="vehicle-icon" src="/assets/icons/warship.svg" alt="">
+              </span>
+              <strong>海战语音包</strong>
+              <span class="preset-meta">通用 + 海战乘员</span>
+              <span class="preset-stamp">VOICE FORGE · 03</span>
+            </button>
+            <button class="preset-card" type="button" data-preset="cockpit">
+              <span class="preset-art">
+                <img class="emoji-icon" src="/assets/emoji/1f3a7.svg" alt="">
+              </span>
+              <strong>座舱告警包</strong>
+              <span class="preset-meta">VWS 告警 · 不含无线电</span>
+              <span class="preset-stamp">VOICE FORGE · 04</span>
+            </button>
+            <button class="preset-card" type="button" data-preset="all">
+              <span class="preset-art">
+                <img class="emoji-icon" src="/assets/emoji/2b50.svg" alt="">
+              </span>
+              <strong>全部语音</strong>
+              <span class="preset-meta">空战 + 陆战 + 海战 + 座舱</span>
+              <span class="preset-stamp">VOICE FORGE · 05</span>
+            </button>
+          </div>
+          <p class="hint small preset-hint">这一排可以多选叠加：点第二张卡会保留第一张，再点一次取消；下方“声音范围”可以逐项微调。</p>
+
+          <details class="quick-range" id="quick-range">
+            <summary id="quick-range-summary">声音范围与成品语言</summary>
+            <div class="quick-scopes">
+              <span class="voice-label">台词范围</span>
+              <label class="check-inline"><input type="checkbox" id="quick-scope-common" checked> 通用（乘员无线电）</label>
+              <label class="check-inline wide"><input type="checkbox" id="quick-scope-air" checked> 空战（起降、航向、空勤告警）</label>
+              <label class="check-inline wide"><input type="checkbox" id="quick-scope-other" checked> 其他（基地、任务、战报）</label>
+              <label class="check-inline"><input type="checkbox" id="quick-scope-ground" checked> 陆战</label>
+              <label class="check-inline"><input type="checkbox" id="quick-scope-naval"> 海战（水面舰艇、潜艇）</label>
+              <label class="check-inline wide"><input type="checkbox" id="quick-scope-cockpit" checked> 座舱告警音效（VWS / 炮手 / 击毁）</label>
+              <span class="hint small">通用、空战、其他来自同一张 common 表，可以分开勾。座舱告警是另一张事件 bank，可逐条选择；雷达锁定、导弹提示音、失速等音效默认保留原音。海战可单独勾，也能和空战/陆战叠加。</span>
+            </div>
+            <details class="quick-cockpit" id="quick-cockpit-audit">
+              <summary id="quick-cockpit-summary">座舱音效清单</summary>
+              <div id="quick-cockpit-body"><p class="hint small">正在读取 aircraft_gui…</p></div>
+            </details>
+            <details class="quick-cockpit" id="quick-cockpit-picker">
+              <summary id="quick-cockpit-picker-summary">选择要重配的座舱告警</summary>
+              <div class="cockpit-picker-tools">
+                <button class="btn ghost small" type="button" id="quick-cockpit-all">全选 VWS</button>
+                <button class="btn ghost small" type="button" id="quick-cockpit-none">清空</button>
+                <button class="btn ghost small" type="button" id="quick-cockpit-default">恢复默认</button>
+                <span class="hint small" id="quick-cockpit-picked">正在读取…</span>
+              </div>
+              <div id="quick-cockpit-picker-body"></div>
+            </details>
+
+            <div class="quick-mode">
+              <span class="voice-label">成品语言</span>
+              <div class="mode-options" id="quick-modes"></div>
+              <p class="hint small" id="quick-mode-note"></p>
+              <div class="quick-rvc" id="quick-rvc" hidden>
+                <span class="hint small" id="quick-rvc-status"></span>
+                <button class="btn ghost small" id="quick-rvc-train" type="button">训练换声模型</button>
+                <button class="btn ghost small" id="quick-rvc-import" type="button">导入换声模型</button>
+              </div>
+            </div>
+
+            <div class="quick-nation-notice" id="quick-nation-notice" hidden>
+              <strong>只做座舱告警时，不需要选择国家</strong>
+              <p>
+                座舱告警使用全局 <span class="mono">aircraft_gui</span> bank，
+                所有国家共用一套，选国家只影响乘员无线电和陆战语音表。
+                直接点下面“准备台词”。
+              </p>
+            </div>
+            <div class="quick-bank-head" id="quick-nation-head">
+              <span class="voice-label">按国家快捷选择</span>
+              <span class="quick-bank-actions">
+                <button class="btn ghost small" id="quick-nations-all" type="button">全选</button>
+                <button class="btn ghost small" id="quick-nations-clear" type="button">清空</button>
+              </span>
+            </div>
+            <div class="nation-grid" id="quick-nations"></div>
+
+            <details class="quick-all-banks" id="quick-all-banks">
+              <summary>更多国家 / 语言（33 种语言、61 张乘员表，含通用/陆战/海战；座舱告警另选）</summary>
+              <p class="hint small" id="quick-language-note">
+                中文模式：外国语音表会先翻译成中文，再用训练音色朗读中文；中国表直接用中文文本，不翻译。原语言换声模式不翻译，直接换音色。
+              </p>
+              <div class="quick-language-chips" id="quick-language-chips"></div>
+              <div class="quick-bank-actions">
+                <button class="btn ghost small" id="quick-banks-common" type="button">全选 common 表台词</button>
+                <button class="btn ghost small" id="quick-banks-ground" type="button">全选陆战</button>
+                <button class="btn ghost small" id="quick-banks-naval" type="button">全选海战</button>
+                <button class="btn ghost small" id="quick-banks-clear" type="button">清空语音表</button>
+              </div>
+              <div class="quick-language-banks" id="quick-language-banks"></div>
+            </details>
+
+            <div class="quick-bank-summary" id="quick-bank-summary"></div>
+          </details>
+
+          <div class="quick-prepare-row">
+            <button class="btn" id="quick-prepare-btn" type="button" disabled>准备台词</button>
+            <span class="hint small" id="quick-prepare-hint">先选范围和成品语言。</span>
+          </div>
+          <div class="progress-wrap" id="quick-prepare-progress" hidden>
+            <div class="progress-bar"><span id="quick-prepare-fill"></span></div>
+            <div class="progress-text" id="quick-prepare-text"></div>
+          </div>
+
+          <div class="quick-dirty-note" id="quick-dirty-note" hidden></div>
+
+          <div class="quick-pack-summary" id="quick-pack-summary">
+            <p class="muted small">准备好台词后，这里会列出每句的用途、文本和原音。</p>
+          </div>
+
+          <div class="quick-audition" id="quick-audition" hidden>
+            <div class="audition-head">
+              <div>
+                <strong>成品试听</strong>
+                <span class="hint small" id="quick-audition-hint">逐句确认；也可以整包连着听</span>
+              </div>
+              <span class="audition-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="quick-audition-actions">
+              <button class="btn" id="quick-play-all" type="button">一键试听全部</button>
+              <button class="btn ghost small" id="quick-play-continue" type="button" disabled>继续听</button>
+              <button class="btn ghost small" id="quick-stop-all" type="button" disabled>停止</button>
+              <button class="btn ghost small" id="quick-compare-source" type="button">听原音对比</button>
+              <label class="check small quick-loop" title="播完最后一句后从第一句继续">
+                <input id="quick-loop-audition" type="checkbox" checked> 循环
+              </label>
+              <span class="hint small" id="quick-audition-status"></span>
+            </div>
+            <div class="quick-now-playing" id="quick-now-playing">
+              <span class="pill subtle" id="quick-now-pill">当前试听</span>
+              <div>
+                <strong id="quick-now-purpose">未在播放</strong>
+                <span id="quick-now-text" class="muted">点“一键试听全部”后这里显示当前台词</span>
+                <span id="quick-now-index" class="muted small"></span>
+              </div>
+              <button class="btn ghost small" id="quick-locate-current" type="button" disabled>定位当前句</button>
+            </div>
+            <audio id="quick-pack-audio" preload="none" hidden></audio>
+          </div>
+
+          <div class="quick-custom" id="quick-custom" hidden>
+            <div class="quick-filter-bar">
+              <div class="chips" id="quick-categories"></div>
+              <input id="quick-search" class="input" type="search" placeholder="搜索用途或原始流名" spellcheck="false">
+            </div>
+            <p class="hint small" id="quick-custom-hint"></p>
+            <p class="hint small" id="quick-variant-hint">同一句常有多段录音。带“录音变体”的卡片共用一次合成；改其中一条只影响那一条。</p>
+            <div class="quick-lines" id="quick-lines"></div>
+            <button class="btn ghost small" id="quick-more" type="button" hidden>加载更多</button>
+          </div>
+
+          <div class="quick-generate-row">
+            <button class="btn" id="quick-synth-only" type="button">先生成一版（可试听）</button>
+            <a class="btn ghost small" id="quick-advanced-link" href="#voices">打开高级编辑</a>
+            <span class="hint small">逐句试听确认后，去第 4 步构建并应用。</span>
+          </div>
+
+          <div class="quick-step-nav">
+            <button class="btn ghost small" type="button" data-quick-step="quick-step-2">上一步：训练音色</button>
+            <button class="btn ghost small" type="button" data-quick-step="quick-step-4">下一步：应用到游戏</button>
+          </div>
+        </section>
+
+        <section class="card quick-step" id="quick-step-4" data-step="04" hidden>
+          <div class="quick-step-head">
+            <span class="step-num">4</span>
+            <div class="quick-step-title">
+              <h2>应用到游戏</h2>
+              <p class="sub">一次完成构建、备份和安装；也可以只导出语音包，或恢复安装前状态。</p>
+            </div>
+            <span class="pill subtle" id="quick-apply-pill">待准备</span>
+          </div>
+
+          <div class="apply-grid">
+            <div class="apply-status" id="quick-apply-summary">
+              <p class="muted small">先在第三步准备台词并生成语音。</p>
+            </div>
+            <div class="apply-actions">
+              <button class="btn" id="quick-apply-btn" type="button">构建并应用到游戏</button>
+              <button class="btn ghost" id="quick-generate-btn" type="button">只构建语音包</button>
+              <button class="btn ghost" id="quick-restore-btn" type="button">恢复安装前状态</button>
+            </div>
+          </div>
+
+          <div class="progress-wrap" id="quick-generate-progress" hidden>
+            <div class="progress-bar"><span id="quick-generate-fill"></span></div>
+            <div class="progress-text" id="quick-generate-text"></div>
+            <div><button class="btn ghost small" id="quick-generate-cancel" type="button">取消任务</button></div>
+          </div>
+
+          <div class="quick-download" id="quick-download" hidden></div>
+
+          <div class="quick-step-nav">
+            <button class="btn ghost small" type="button" data-quick-step="quick-step-3">上一步：生成语音</button>
+            <span class="hint small">安装前请关闭游戏；覆盖同名 bank 会先备份。</span>
+          </div>
+        </section>
+      </div>
+      </div>
+
+      <footer class="foot">
+        <span>WT Voice Forge</span>
+        <span class="muted">本地处理 · 数据留在这台电脑 · 没有遥测</span>
+      </footer>
+    </div>
+
+    <div class="page-view" id="page-voices" hidden>
+            <header class="page-head">
+        <div class="page-head-main">
+          <span class="page-badge"><svg class="icon" aria-hidden="true"><use href="#i-wave"></use></svg></span>
+          <div>
+            <div class="page-kicker">项目 <b>/</b> 台词与版本</div>
+            <h1>高级编辑</h1>
+            <p class="sub">逐句改词、重新生成、挑候选版本，也可以手动绑定游戏事件。</p>
+          </div>
+        </div>
+        <div class="head-actions">
+          <span class="status-pill" id="voice-engine-pill"><span class="dot"></span> 检测中</span>
+          <button class="btn ghost" id="voice-refresh-btn" type="button">刷新</button>
+        </div>
+      </header>
+
+      <nav class="voice-tabs" id="voice-tabs" role="tablist" aria-label="高级编辑分区">
+        <button class="voice-tab active" type="button" role="tab" data-voice-tab="lines" aria-selected="true">台词表</button>
+        <button class="voice-tab" type="button" role="tab" data-voice-tab="voice" aria-selected="false">音色与训练</button>
+        <button class="voice-tab" type="button" role="tab" data-voice-tab="localize" aria-selected="false">汉化</button>
+        <button class="voice-tab" type="button" role="tab" data-voice-tab="build" aria-selected="false">构建与导出</button>
+      </nav>
+
+      <section class="card voice-picker">
+        <label class="field-label" for="voice-project-select">当前声音项目</label>
+        <div class="voice-picker-row">
+          <select id="voice-project-select" class="input select"></select>
+          <input id="voice-new-name" class="input" type="text" placeholder="新项目名称，例如：我的中文车长" spellcheck="false">
+          <button class="btn" id="voice-create-btn" type="button">新建项目</button>
+        </div>
+      </section>
+
+      <section class="card voice-empty" id="voice-empty" hidden>
+        <h2>先建一个声音项目</h2>
+        <p class="hint">一个项目保存一套参考音频、音色和台词表。</p>
+      </section>
+
+      <div id="voice-workspace" hidden>
+        <section class="card voice-project" data-voice-panel="voice" hidden>
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">REFERENCE</div>
+              <h2 id="voice-title">—</h2>
+              <p class="sub" id="voice-meta">—</p>
+            </div>
+            <span class="pill subtle" id="voice-status-pill">未就绪</span>
+          </div>
+
+          <div class="voice-ref-grid">
+            <div>
+              <div class="voice-label">参考音频</div>
+              <div id="voice-ref-list" class="voice-ref-list"></div>
+              <button class="btn ghost small" id="voice-import-btn" type="button">选择参考音频文件夹</button>
+              <p class="hint small">支持 wav / mp3 / flac / m4a / ogg。3–10 秒干净人声就能先试；同一人多段会更稳。</p>
+            </div>
+            <div>
+              <label class="field-label" for="voice-prompt">参考音频对应的文字</label>
+              <textarea id="voice-prompt" class="input textarea" rows="3" placeholder="例：这句要和你选的参考音频里说的话完全一致"></textarea>
+              <div class="field-row tight">
+                <select id="voice-prompt-lang" class="input select">
+                  <option value="zh">中文</option>
+                  <option value="en">英文</option>
+                  <option value="ja">日文</option>
+                  <option value="ko">韩文</option>
+                  <option value="yue">粤语</option>
+                </select>
+                <select id="voice-prompt-file" class="input select"></select>
+                <button class="btn ghost" id="voice-detect-btn" type="button">自动识别文字</button>
+                <button class="btn" id="voice-save-prompt" type="button">保存</button>
+              </div>
+              <p class="hint small">
+                GPT-SoVITS 用这段声音和文字克隆音色；文字必须和音频里说的话一致。
+                中文/粤语可以直接点“自动识别文字”。
+              </p>
+            </div>
+          </div>
+
+          <details class="details" id="voice-ref-texts">
+            <summary>训练素材文字（逐条核对，防止文字配错）</summary>
+            <div id="voice-ref-text-list" class="stack"></div>
+            <div class="field-row tight">
+              <button class="btn ghost small" id="voice-save-texts" type="button">保存全部文字</button>
+              <span class="hint small">训练前会自动识别中文/粤语的空缺文字；其它语言需手动填写。</span>
+            </div>
+          </details>
+
+          <div class="voice-engine-box" id="voice-engine-box">正在检查 GPT-SoVITS…</div>
+        </section>
+
+        <section class="card voice-train" data-voice-panel="voice" hidden>
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">FINE-TUNE</div>
+              <h2>训练专属音色</h2>
+              <p class="sub">用多段参考音频微调 GPT-SoVITS，比零样本更稳。训练在本机进行。</p>
+            </div>
+            <span class="pill subtle" id="voice-model-pill">零样本</span>
+          </div>
+          <p class="hint" id="voice-model-detail">当前使用参考音频直接克隆，不需要训练。</p>
+          <div class="field-row tight">
+            <button class="btn" id="voice-train-btn" type="button">训练专属音色</button>
+            <button class="btn ghost" id="voice-model-toggle" type="button" hidden>换回零样本</button>
+            <button class="btn ghost" id="voice-train-cancel" type="button" hidden>取消训练</button>
+            <span class="hint small" id="voice-train-hint"></span>
+          </div>
+          <div class="progress-wrap" id="voice-train-progress" hidden>
+            <div class="progress-bar"><span id="voice-train-fill"></span></div>
+            <div class="progress-text" id="voice-train-text"></div>
+          </div>
+          <p class="hint small">
+            至少 3 段参考音频、总时长 8 秒以上；官方建议累计约 1 分钟，音色更稳。训练会清空已合成音频，避免旧音色和新模型混在一起。
+          </p>
+          <details class="details quality-guide">
+            <summary>声音不满意？按这个顺序排查（官方 / 社区经验）</summary>
+            <ol class="quality-list">
+              <li><strong>参考音频</strong>：单人干声，无音乐和混响。微调建议累计 1 分钟左右。</li>
+              <li><strong>参考文字</strong>：必须和录音逐字一致，错字会带偏咬字。</li>
+              <li><strong>训练轮数</strong>：默认 GPT 15 轮 / SoVITS 2 轮。素材少时，先补干净素材比加轮数有效。</li>
+              <li><strong>合成</strong>：先用默认采样和 1 版。吞字就拆短句，重复就换种子。</li>
+              <li><strong>仍不满意</strong>：换一段情绪接近、3–10 秒的参考再试。</li>
+              <li><strong>游戏原音</strong>：底噪重时，先分离人声或降噪再训练。</li>
+            </ol>
+          </details>
+        </section>
+
+        <section class="card voice-build" data-voice-panel="build" hidden>
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">PACKAGE</div>
+              <h2>构建语音包</h2>
+              <p class="sub">把已合成的台词写回 FMOD 工程，只构建涉及的 bank，导出可安装的 .wtvoice；也能下载社区分享用的 ZIP。</p>
+            </div>
+            <span class="pill subtle" id="voice-build-pill">未就绪</span>
+          </div>
+          <div id="voice-build-banks" class="voice-build-banks"></div>
+          <p class="hint" id="voice-build-hint"></p>
+          <div class="field-row tight">
+            <button class="btn" id="voice-build-btn" type="button">构建语音包</button>
+            <button class="btn ghost" id="voice-build-cancel" type="button" hidden>取消构建</button>
+            <a class="btn ghost" id="voice-download-link" href="#" download hidden>下载 .wtvoice</a>
+            <a class="btn ghost" id="voice-download-zip-link" href="#" download hidden>下载社区 ZIP</a>
+          </div>
+          <div class="progress-wrap" id="voice-build-progress" hidden>
+            <div class="progress-bar"><span id="voice-build-fill"></span></div>
+            <div class="progress-text" id="voice-build-text"></div>
+          </div>
+          <p class="hint small">
+            构建只读取官方工程，不修改游戏目录；安装时把 banks 复制到 sound\mod 并启用 enable_mod。
+            同一个 bank 只能由一个语音包提供，安装新包会整体替换该 bank 的声音。
+            首次构建需要复制工程元数据，会慢一些。
+          </p>
+        </section>
+
+        <section class="card voice-localized" data-voice-panel="localize" hidden>
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">LOCALIZE</div>
+              <h2>外语语音表汉化</h2>
+              <p class="sub">把整张外语表加入项目，只翻译缺少中文的行。</p>
+            </div>
+            <span class="pill subtle" id="voice-localized-pill">未加载</span>
+          </div>
+          <div class="field-row tight">
+            <select id="voice-localized-bank" class="input"></select>
+            <button class="btn ghost small" id="voice-localized-refresh" type="button">刷新语音表</button>
+          </div>
+          <div class="field-row tight">
+            <select id="voice-localized-source" class="input"></select>
+            <button class="btn ghost small" id="voice-localized-copy" type="button">用中文项目补齐</button>
+          </div>
+          <div class="field-row tight">
+            <button class="btn" id="voice-localized-add" type="button">加入这张语音表全部台词</button>
+            <button class="btn ghost" id="voice-localized-official" type="button">用游戏中文原音补齐</button>
+            <a class="btn ghost small" id="voice-translation-task" href="#" hidden>导出翻译任务 ZIP</a>
+            <label class="check-inline">
+              <input type="checkbox" id="voice-translation-missing">
+              只导出没有中文原音的缺口
+            </label>
+          </div>
+          <div class="coverage-head">
+            <p class="hint small" id="voice-coverage-summary">
+              统计全部语音表在通用 / 陆战 / 海战上的差异。首次约半分钟，之后复用缓存。
+            </p>
+            <button class="btn ghost small" id="voice-coverage-refresh" type="button">统计中文覆盖</button>
+          </div>
+          <div class="coverage-table" id="voice-coverage" hidden></div>
+          <p class="hint" id="voice-localized-hint"></p>
+          <p class="hint small" id="voice-localized-status"></p>
+          <p class="hint small">
+            构建时会保留游戏 bank 里比官方工程多出的原音。没有中文文本的行会标为“待翻译”。
+            要读取游戏语音表和中文原音，先在工作台选择战雷目录。
+          </p>
+        </section>
+
+        <section class="card voice-lines-card" data-voice-panel="lines">
+          <div class="voice-lines-headwrap">
+            <div class="section-head">
+              <div>
+                <div class="eyebrow">LINES</div>
+                <h2>台词表 <span class="line-count" id="voice-line-count">0</span></h2>
+                <p class="sub">每行一句。先生成，再试听、挑版本或重新生成。</p>
+              </div>
+              <div class="head-actions">
+                <button class="btn ghost small" id="voice-play-all" type="button" disabled>一键试听全部</button>
+                <button class="btn ghost small" id="voice-play-continue" type="button" disabled>继续听</button>
+                <label class="check small" title="播完最后一句后从第一句继续">
+                  <input id="voice-loop-audition" type="checkbox" checked> 循环
+                </label>
+                <button class="btn" id="voice-batch-btn" type="button">合成未完成</button>
+              </div>
+            </div>
+            <div class="voice-lines-toolbar">
+              <label class="check small"><input id="voice-only-missing" type="checkbox"> 只看未完成</label>
+              <label class="check small" title="每句生成几个候选版本">每句
+                <select id="voice-take-count" class="input select take-count-select">
+                  <option value="1" selected>1 版</option>
+                  <option value="2">2 版</option>
+                  <option value="3">3 版</option>
+                  <option value="4">4 版</option>
+                </select>
+              </label>
+              <span class="toolbar-sep" aria-hidden="true"></span>
+              <a class="btn ghost small" id="voice-export-link" href="/api/voice/export" download>导出对照表</a>
+              <label class="btn ghost small" for="voice-import-file">导入翻译</label>
+              <input id="voice-import-file" type="file" accept=".csv,text/csv" hidden>
+              <span class="hint small" id="voice-take-hint">默认 1 版；先听整体，再给个别句子加版本。</span>
+            </div>
+          </div>
+
+          <div class="voice-add-row">
+            <input id="voice-new-event" class="input" type="text" placeholder="事件名（可选，建议从游戏素材精确添加）" spellcheck="false">
+            <textarea id="voice-new-text" class="input textarea" rows="2" placeholder="输入要合成的台词"></textarea>
+            <button class="btn ghost" id="voice-add-line" type="button">添加台词</button>
+          </div>
+
+          <details class="details voice-event-picker" id="voice-event-picker">
+            <summary>从游戏素材精确添加事件（推荐，避免文件名对错）</summary>
+            <div class="field-row tight">
+              <input id="voice-event-search" class="input" type="search" placeholder="搜索事件名，例如 enemy_destroyed" spellcheck="false">
+              <button class="btn ghost small" id="voice-event-search-btn" type="button">搜索</button>
+            </div>
+            <div id="voice-event-results" class="voice-event-results"></div>
+          </details>
+
+          <div class="progress-wrap" id="voice-progress" hidden>
+            <div class="progress-bar"><span id="voice-progress-fill"></span></div>
+            <div class="progress-text" id="voice-progress-text"></div>
+            <div><button class="btn ghost small" id="voice-job-cancel" type="button">取消</button></div>
+          </div>
+
+          <div class="voice-lines-body" id="voice-lines-body"></div>
+
+          <div class="player-bar">
+            <span class="player-kicker">试听</span>
+            <audio id="voice-player" controls preload="none"></audio>
+            <button class="btn ghost small" id="voice-locate-current" type="button" disabled>定位当前句</button>
+            <span class="player-label" id="voice-player-label">选择一句合成后播放</span>
+          </div>
+        </section>
+      </div>
+
+      <footer class="foot">
+        <span>WT Voice Forge</span>
+        <span class="muted">参考音频和合成结果只存在本机</span>
+      </footer>
+    </div>
+
+    <div class="page-view" id="page-packs" hidden>
+            <header class="page-head">
+        <div class="page-head-main">
+          <span class="page-badge"><svg class="icon" aria-hidden="true"><use href="#i-box"></use></svg></span>
+          <div>
+            <div class="page-kicker">安装 <b>/</b> sound/mod</div>
+            <h1>语音包</h1>
+            <p class="sub">把成品包装进游戏。覆盖前会备份，游戏运行中会拒绝写入。</p>
+          </div>
+        </div>
+        <div class="head-actions">
+          <span class="status-pill" id="packs-game-pill"><span class="dot"></span> 检测中</span>
+          <button class="btn ghost" id="packs-refresh-btn" type="button">刷新</button>
+        </div>
+      </header>
+
+      <div class="banner error" id="packs-error" hidden></div>
+
+      <div class="packs-layout">
+        <div class="packs-main">
+          <section class="card">
+            <div class="section-head">
+              <div>
+                <div class="eyebrow">IMPORT</div>
+                <h2>导入语音包</h2>
+                <p class="sub">支持 .wtvoice、含 bank 的 zip / rar / 7z 或单个 .bank。</p>
+              </div>
+              <span class="pill subtle">最大 1 GB</span>
+            </div>
+
+            <div class="dropzone" id="pack-drop" role="button" tabindex="0" aria-label="选择或拖入语音包">
+              <div class="dropzone-mark">↓</div>
+              <strong>拖入语音包</strong>
+              <span class="muted small">.wtvoice · zip · rar · 7z · 单个 .bank</span>
+              <span class="hint small">只读取 bank 和 manifest，不执行包内程序；RAR/7z 会用本机 7-Zip 安全检查后转成内部 zip。</span>
+            </div>
+            <input id="pack-file" type="file" accept=".wtvoice,.zip,.rar,.7z,.bank" hidden>
+
+            <div class="progress-wrap" id="pack-upload" hidden>
+              <div class="progress-bar"><span id="pack-upload-fill"></span></div>
+              <div class="progress-text" id="pack-upload-text"></div>
+            </div>
+
+            <div class="pack-preview" id="pack-preview" hidden></div>
+          </section>
+
+          <section class="card">
+            <div class="section-head">
+              <div>
+                <div class="eyebrow">INSTALLED</div>
+                <h2>已安装</h2>
+                <p class="sub">覆盖前会自动备份到本机；卸载或还原原版音效时恢复。</p>
+              </div>
+              <div class="storage-head">
+                <button class="btn ghost small" id="pack-restore-all" type="button" hidden>还原原版音效</button>
+                <span class="pill subtle" id="pack-installed-count">读取中</span>
+              </div>
+            </div>
+            <div id="pack-installed" class="stack">
+              <p class="muted small">正在读取安装记录…</p>
+            </div>
+          </section>
+        </div>
+
+        <aside class="packs-side">
+          <section class="card">
+            <div class="section-head">
+              <div>
+                <div class="eyebrow">TARGET</div>
+                <h2>安装目标</h2>
+              </div>
+              <span class="pill subtle" id="pack-game-state">检测中</span>
+            </div>
+            <div id="pack-game-info" class="card-main">
+              <p class="muted small">正在读取游戏目录…</p>
+            </div>
+          </section>
+
+          <section class="card pack-checklist">
+            <div class="eyebrow">AFTER INSTALL</div>
+            <h2>进游戏确认</h2>
+            <ol class="pack-steps">
+              <li><span>1</span><div><strong>左上角提示</strong><br>出现“已启用自定义音效”说明 mod 已加载。</div></li>
+              <li><span>2</span><div><strong>成员组语音</strong><br>设置 → 声音 → 成员组语言。按作者说明选游戏选项或国籍。</div></li>
+              <li><span>3</span><div><strong>枪炮音效</strong><br>作者要求时，在安装页“高级”里勾选 useLoopsForGunSound。</div></li>
+              <li><span>4</span><div><strong>游戏更新后</strong><br>变回原声或无声，回本页检查 enable_mod 和旧 bank。</div></li>
+            </ol>
+            <p class="hint small">步骤对照官方 wiki 的 Sound modifications 和官方 FMOD 工程 Readme。</p>
+          </section>
+
+          <section class="card pack-notes">
+            <div class="eyebrow">SAFETY</div>
+            <h2>会改什么</h2>
+            <ul class="notes">
+              <li>只写 <span class="mono">sound\mod</span>，不动 <span class="mono">sound</span> 根目录。</li>
+              <li>覆盖同名 bank 前，先备份到本地数据目录。</li>
+              <li>可选修改 <span class="mono">config.blk</span> 的 <span class="mono">enable_mod</span>，改前同样备份。</li>
+              <li>卸载只删除本工具装过且未被改动的 bank，并尽量还原备份。</li>
+              <li>卸载不会自动关闭 <span class="mono">enable_mod</span>，避免影响其他 mod。</li>
+              <li>游戏运行时拒绝安装。</li>
+            </ul>
+            <p class="hint small">要生成语音包，去 <a href="#workbench">工作台</a> 按四步制作，或到 <a href="#voices">高级编辑</a> 逐句修改。</p>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="foot">
+        <span>WT Voice Forge</span>
+        <span class="muted">安装前备份 · 只写 sound/mod</span>
+      </footer>
+    </div>
+
+    <div class="page-view" id="page-assets" hidden>
+            <header class="page-head">
+        <div class="page-head-main">
+          <span class="page-badge"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg></span>
+          <div>
+            <div class="page-kicker">参考 <b>/</b> 游戏原素材</div>
+            <h1>游戏素材</h1>
+            <p class="sub">查事件、试听原音、解包游戏 bank。这里只做参考，不参与训练。</p>
+          </div>
+        </div>
+        <div class="head-actions">
+          <a class="btn ghost" href="#voices">返回高级编辑</a>
+        </div>
+      </header>
+
+      <section class="card section-card" id="catalog">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">EVENTS</div>
+            <h2>事件目录与试听</h2>
+          </div>
+          <div class="head-actions">
+            <span class="pill" id="catalog-pill">读取中</span>
+            <button class="btn ghost" id="catalog-refresh-btn" type="button">刷新目录</button>
+            <button class="btn ghost" id="catalog-rebuild-btn" type="button" hidden>重新生成</button>
+          </div>
+        </div>
+
+        <div class="catalog-state" id="catalog-state">
+          <p class="muted">正在读取目录状态…</p>
+        </div>
+
+        <div class="progress-wrap" id="catalog-build-wrap" hidden>
+          <div class="progress-bar"><span id="catalog-build-fill"></span></div>
+          <div class="progress-text" id="catalog-build-text"></div>
+          <div><button class="btn ghost small" id="catalog-build-cancel" type="button">取消生成</button></div>
+        </div>
+
+        <div id="catalog-body" hidden>
+          <div class="summary-strip five" id="catalog-summary"></div>
+          <p class="hint" id="catalog-hint"></p>
+
+          <div class="filter-grid">
+            <label class="filter-field">
+              <span>Bank</span>
+              <select id="catalog-bank" class="input select"><option value="">全部 bank</option></select>
+            </label>
+            <label class="filter-field">
+              <span>分类</span>
+              <select id="catalog-category" class="input select"><option value="">全部分类</option></select>
+            </label>
+            <label class="filter-field">
+              <span>语种</span>
+              <select id="catalog-language" class="input select"><option value="">全部语种</option></select>
+            </label>
+            <label class="filter-field">
+              <span>素材</span>
+              <select id="catalog-has-assets" class="input select">
+                <option value="">全部</option>
+                <option value="assets">有可试听素材</option>
+                <option value="missing">素材缺失</option>
+                <option value="none">无素材引用</option>
+              </select>
+            </label>
+            <label class="filter-field filter-search">
+              <span>搜索</span>
+              <input id="catalog-search" class="input" type="search" placeholder="事件名 / bank" spellcheck="false">
+            </label>
+            <label class="filter-field filter-page-size">
+              <span>每页</span>
+              <select id="catalog-page-size" class="input select">
+                <option value="25">25</option>
+                <option value="50" selected>50</option>
+                <option value="100">100</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="player-bar">
+            <span class="player-kicker">试听</span>
+            <audio id="catalog-player" controls preload="none"></audio>
+            <span class="player-label" id="catalog-player-label">选择一行播放</span>
+          </div>
+
+          <div class="table-wrap catalog-table-wrap">
+            <table class="table">
+              <thead>
+                <tr><th data-sort="bank">Bank</th><th data-sort="event">事件</th><th>分类</th><th data-sort="duration">时长</th><th>素材</th><th>路径</th><th></th></tr>
+              </thead>
+              <tbody id="catalog-events-body">
+                <tr><td colspan="7" class="muted">生成目录后显示</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pager">
+            <button class="btn ghost small" id="catalog-prev" type="button">上一页</button>
+            <span class="mono small" id="catalog-page-info">—</span>
+            <button class="btn ghost small" id="catalog-next" type="button">下一页</button>
+          </div>
+
+          <details class="details catalog-extra">
+            <summary>覆盖率与游戏 bank 解包（高级）</summary>
+          <div class="catalog-split">
+            <div>
+              <h3>按 bank 覆盖率 <span class="muted small">（官方工程素材）</span></h3>
+              <div class="table-wrap coverage-wrap">
+                <table class="table">
+                  <thead><tr><th>Bank</th><th>事件</th><th>有素材</th><th>覆盖率</th><th>缺失</th></tr></thead>
+                  <tbody id="catalog-coverage-body">
+                    <tr><td colspan="5" class="muted">生成目录后显示</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="unpack-card" id="unpack">
+              <div class="installer-head">
+                <h3>解包游戏 bank</h3>
+                <span class="pill subtle" id="unpack-pill">读取中</span>
+              </div>
+              <p class="hint" id="unpack-vgmstream">正在检查 vgmstream…</p>
+
+              <label class="field-label" for="unpack-bank">选择 bank</label>
+              <select id="unpack-bank" class="input select"></select>
+
+              <div class="field-row tight">
+                <button class="btn" id="unpack-start-btn" type="button" disabled>解包此 bank</button>
+                <button class="btn ghost" id="unpack-cancel-btn" type="button" hidden>取消</button>
+              </div>
+
+              <div class="progress-wrap" id="unpack-progress" hidden>
+                <div class="progress-bar"><span id="unpack-progress-fill"></span></div>
+                <div class="progress-text" id="unpack-progress-text">准备中…</div>
+              </div>
+
+              <div class="install-meta" id="unpack-summary">还没有解包结果。</div>
+              <p class="hint" id="unpack-match-note"></p>
+
+              <div class="table-wrap stream-wrap" id="unpack-stream-wrap" hidden>
+                <table class="table">
+                  <thead><tr><th>#</th><th>流</th><th>时长</th><th>匹配</th><th></th></tr></thead>
+                  <tbody id="unpack-stream-body"></tbody>
+                </table>
+              </div>
+              <div class="pager" id="unpack-pager" hidden>
+                <button class="btn ghost small" id="unpack-prev" type="button">上一页</button>
+                <span class="mono small" id="unpack-page-info">—</span>
+                <button class="btn ghost small" id="unpack-next" type="button">下一页</button>
+              </div>
+            </div>
+          </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="card section-card" id="banks">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">BANK OVERVIEW</div>
+            <h2>游戏 bank 概览</h2>
+          </div>
+          <div class="head-actions">
+            <span class="pill" id="bank-count-pill">0 个 bank</span>
+            <span class="pill subtle" id="bank-size-pill">0 MB</span>
+          </div>
+        </div>
+
+        <div class="summary-strip" id="bank-summary">
+          <div class="stat"><span class="stat-label">总 bank</span><span class="stat-value">—</span></div>
+          <div class="stat"><span class="stat-label">总大小</span><span class="stat-value">—</span></div>
+          <div class="stat"><span class="stat-label">乘员语种</span><span class="stat-value">—</span></div>
+          <div class="stat"><span class="stat-label">关键 bank</span><span class="stat-value">—</span></div>
+        </div>
+
+        <div class="split">
+          <div>
+            <h3>关键 bank</h3>
+            <div class="table-wrap">
+              <table class="table">
+                <thead><tr><th>Bank</th><th>用途</th><th>体积</th><th>状态</th></tr></thead>
+                <tbody id="key-bank-body"><tr><td colspan="4" class="muted">选择战雷目录后显示</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <h3>陆战乘员语种</h3>
+            <div id="crew-langs" class="chips"><span class="muted small">选择战雷目录后显示</span></div>
+            <h3 class="mt">分类计数</h3>
+            <div id="category-counts" class="chips"><span class="muted small">选择战雷目录后显示</span></div>
+          </div>
+        </div>
+
+        <details class="details mt">
+          <summary>全部 bank（<span id="all-bank-count">0</span>）</summary>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>名称</th><th>分类</th><th>语种</th><th>体积</th><th>.bank</th></tr></thead>
+              <tbody id="all-bank-body"><tr><td colspan="5" class="muted">选择战雷目录后显示</td></tr></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+
+      <footer class="foot">
+        <span>WT Voice Forge</span>
+        <span class="muted">只读浏览 · 不解包到游戏目录</span>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<dialog class="wt-dialog" id="uninstall-dialog" aria-labelledby="uninstall-title">
+  <form method="dialog">
+    <div class="wt-dialog-head">
+      <span class="wt-dialog-icon"><svg class="icon" aria-hidden="true"><use href="#i-trash"></use></svg></span>
+      <div>
+        <div class="eyebrow">UNINSTALL</div>
+        <h2 id="uninstall-title">卸载 WT Voice Forge</h2>
+      </div>
+    </div>
+    <p class="hint">卸载会删除程序文件。项目、训练模型、缓存和导出包都在 <span class="mono">data</span> 文件夹里，是否保留由你决定。</p>
+    <label class="uninstall-choice">
+      <input type="checkbox" id="uninstall-keep-data">
+      <span>
+        <strong>保留 data 文件夹</strong>
+        <small>勾选后保留项目、训练模型、缓存和导出包；重新安装后可以继续使用。</small>
+      </span>
+    </label>
+    <p class="uninstall-warning" id="uninstall-warning">不勾选会同时删除 data 文件夹，删除后无法恢复。</p>
+    <div class="wt-dialog-tools">
+      <button class="btn ghost small" type="button" data-open-folder="data">打开 data 文件夹</button>
+      <span class="hint small">卸载前请先结束训练或合成任务。</span>
+    </div>
+    <div class="wt-dialog-actions">
+      <button class="btn ghost" type="button" id="uninstall-cancel">取消</button>
+      <button class="btn danger" type="button" id="uninstall-start">卸载并删除全部数据</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="wt-dialog" id="storage-clean-dialog" aria-labelledby="storage-clean-title">
+  <form method="dialog">
+    <div class="wt-dialog-head">
+      <span class="wt-dialog-icon"><svg class="icon" aria-hidden="true"><use href="#i-database"></use></svg></span>
+      <div>
+        <div class="eyebrow">CLEANUP</div>
+        <h2 id="storage-clean-title">清理可回收空间</h2>
+      </div>
+    </div>
+    <p class="hint">只删除可以重新生成的缓存、日志、安装包残留和窗口缓存。声音项目、训练模型、语音包和已安装的引擎都会保留。</p>
+    <div class="clean-list" id="storage-clean-list"></div>
+    <p class="uninstall-warning keep" id="storage-clean-note">正在使用的窗口缓存会被跳过，下次打开稍微慢一点。</p>
+    <div class="wt-dialog-actions">
+      <button class="btn ghost" type="button" id="storage-clean-cancel">取消</button>
+      <button class="btn" type="button" id="storage-clean-start">清理这些文件</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="wt-dialog" id="component-uninstall-dialog" aria-labelledby="component-uninstall-title">
+  <form method="dialog">
+    <div class="wt-dialog-head">
+      <span class="wt-dialog-icon"><svg class="icon" aria-hidden="true"><use href="#i-trash"></use></svg></span>
+      <div>
+        <div class="eyebrow">UNINSTALL ENGINE</div>
+        <h2 id="component-uninstall-title">卸载运行时</h2>
+      </div>
+    </div>
+    <p class="hint" id="component-uninstall-text">会删除运行时和对应安装包。</p>
+    <p class="uninstall-warning">不会删除声音项目、训练模型、参考音频或已安装的语音包。之后可以重新下载。</p>
+    <div class="wt-dialog-actions">
+      <button class="btn ghost" type="button" id="component-uninstall-cancel">取消</button>
+      <button class="btn danger" type="button" id="component-uninstall-start">卸载并删除运行时</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="wt-dialog" id="install-preflight-dialog" aria-labelledby="install-preflight-title">
+  <form method="dialog">
+    <div class="wt-dialog-head">
+      <span class="wt-dialog-icon"><svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg></span>
+      <div>
+        <div class="eyebrow">BEFORE DOWNLOAD</div>
+        <h2 id="install-preflight-title">确认下载与安装</h2>
+      </div>
+    </div>
+    <p class="hint" id="install-preflight-intro">正在检查磁盘空间…</p>
+    <div class="clean-list" id="install-preflight-list"></div>
+    <p class="uninstall-warning" id="install-preflight-warning" hidden></p>
+    <div class="wt-dialog-actions">
+      <button class="btn ghost" type="button" id="install-preflight-cancel">取消</button>
+      <button class="btn" type="button" id="install-preflight-start">开始下载</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="wt-dialog tune-dialog" id="line-tuning-dialog" aria-labelledby="line-tuning-title">
+  <form method="dialog">
+    <div class="wt-dialog-head">
+      <span class="wt-dialog-icon"><svg class="icon" aria-hidden="true"><use href="#i-sliders"></use></svg></span>
+      <div>
+        <div class="eyebrow">TONE &amp; LEVEL</div>
+        <h2 id="line-tuning-title">调整语气与音量</h2>
+      </div>
+    </div>
+    <p class="hint" id="line-tuning-line">正在读取台词…</p>
+    <div class="tune-grid">
+      <div class="tune-field" id="line-tuning-ref-field">
+        <div class="tune-label">
+          <span>语气参考</span>
+          <span class="hint small" id="line-tuning-ref-count"></span>
+        </div>
+        <div class="tune-ref-row">
+          <select class="input select" id="line-tuning-ref"></select>
+          <button class="btn ghost small" type="button" id="line-tuning-ref-play">试听参考</button>
+        </div>
+        <p class="hint small" id="line-tuning-ref-text">语气来自参考音频；选一段和想要效果最接近的。</p>
+      </div>
+      <div class="tune-field" id="line-tuning-speed-field">
+        <div class="tune-label">
+          <span>语速</span>
+          <output id="line-tuning-speed-value">1.00×</output>
+        </div>
+        <input class="tune-range" type="range" id="line-tuning-speed" min="0.75" max="1.35" step="0.01" value="1">
+        <p class="hint small">慢一点更稳，快一点更急；会同时改变音频长度。</p>
+      </div>
+      <div class="tune-field">
+        <div class="tune-label">
+          <span>音量</span>
+          <output id="line-tuning-gain-value">0 dB</output>
+        </div>
+        <input class="tune-range" type="range" id="line-tuning-gain" min="-12" max="6" step="0.5" value="0">
+        <p class="hint small">只改音量会立刻套用到已生成的音频；加太多会自动限制以避免削波。</p>
+      </div>
+    </div>
+    <label class="check small tune-bulk" id="line-tuning-bulk-row">
+      <input type="checkbox" id="line-tuning-bulk">
+      同时应用到当前筛选的 <span id="line-tuning-bulk-count">0</span> 句
+    </label>
+    <p class="uninstall-warning keep tune-note" id="line-tuning-note">改动参考语气或语速后，这一句需要重新生成；只改音量不会丢现有音频。</p>
+    <div class="wt-dialog-actions">
+      <button class="btn ghost" type="button" id="line-tuning-preview">试听这句</button>
+      <button class="btn ghost" type="button" id="line-tuning-cancel">取消</button>
+      <button class="btn" type="button" id="line-tuning-save">保存设置</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="task-dock" id="task-dock" role="status" aria-live="polite" hidden>
+  <div class="task-dock-top">
+    <span class="task-dock-kind" id="task-dock-kind">训练音色</span>
+    <span class="task-dock-percent" id="task-dock-percent">0%</span>
+  </div>
+  <div class="progress-bar"><span id="task-dock-fill"></span></div>
+  <div class="task-dock-msg" id="task-dock-msg">准备中…</div>
+  <div class="task-dock-meta" id="task-dock-meta"></div>
+  <div class="task-dock-actions">
+    <a class="btn ghost small" id="task-dock-open" href="#voices">查看进度</a>
+    <button class="btn ghost small" id="task-dock-cancel" type="button">取消任务</button>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status" hidden></div>
+<script src="/app.js?v=0.9.20d-ui"></script>
+<script src="/catalog.js?v=0.9.20d-ui"></script>
+<script src="/quick.js?v=0.9.20d-ui"></script>
+<script src="/voice.js?v=0.9.20d-ui"></script>
+<script src="/packs.js?v=0.9.20d-ui"></script>
+</body>
+</html>

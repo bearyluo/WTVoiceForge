@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# 运行数据
+data/
+models/
+components/
+cache/
+exports/
+logs/
+*.wtvoice
+
+# 本地聊天记录（含本机路径和工具输出）
+docs/chat/*.jsonl
+
+# 构建产物
+build/
+dist/
+*.spec
+WTVoiceForge.exe
+packaging/*.log
+
+# vgmstream 二进制按需下载，不进仓库
+vendor/vgmstream/*.exe
+vendor/vgmstream/*.dll
+vendor/vgmstream/*.zip
+
+# 编辑器/系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+vendor/vgmstream/*.part
+
+# 私密信息与签名材料
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+
+# 本机排查、游戏素材、聊天记录与未采用的设计草稿
+docs/diagnostics/
+tools/diagnostics/
+docs/chat/
+docs/icons/
+vibe_images/
+/.tmp-*
+/commits.json
+/gui_list.json
+/meta.json
+/root.json
+/readme_remote.md
+*.bank
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.pth
+*.ckpt
+*.index
+*.log
+*.bak

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wt-voice-forge"
+version = "0.9.20"
+description = "WT Voice Forge: a local War Thunder voice-pack creator"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "WT Voice Forge contributors" }]
+keywords = ["war-thunder", "voice-pack", "rvc", "fmod"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+]
+
+[project.scripts]
+wt-voice-forge = "app.server:main"
+
+[project.urls]
+Homepage = "https://github.com/bearyluo/WTVoiceForge"
+Issues = "https://github.com/bearyluo/WTVoiceForge/issues"
+
+[project.optional-dependencies]
+desktop = ["pywebview>=6.2,<7", "pythonnet>=3.2,<4"]
+
+[tool.setuptools]
+packages = ["app", "app.engines"]
