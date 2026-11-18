@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+import re
 import shutil
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
@@ -168,7 +169,60 @@ def find_kits(extra_paths: Iterable[str | Path] | None = None) -> list[KitInfo]:
     return result[:8]
 
 
-def find_fmod_studio() -> list[dict]:
+def resolve_fmod_cli(value: str | Path) -> Path | None:
+    raw = str(value).strip().strip('"')
+    if not raw:
+        return None
+    try:
+        path = Path(os.path.expandvars(raw)).expanduser()
+        if path.is_dir():
+            path /= "fmodstudiocl.exe"
+        if path.name.casefold() in ("fmodstudiocl.exe", "fmodstudiocl") and path.is_file():
+            return path.resolve()
+    except (OSError, ValueError, RuntimeError):
+        pass
+    return None
+
+
+def _registered_fmod_dirs() -> Iterable[Path]:
+    if os.name != "nt":
+        return
+    import winreg
+
+    def read_string(key, name: str) -> str:
+        try:
+            value, _ = winreg.QueryValueEx(key, name)
+            return value if isinstance(value, str) else ""
+        except OSError:
+            return ""
+
+    uninstall_key = r"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+    for hive in (winreg.HKEY_CURRENT_USER, winreg.HKEY_LOCAL_MACHINE):
+        for view in (winreg.KEY_WOW64_64KEY, winreg.KEY_WOW64_32KEY):
+            access = winreg.KEY_READ | view
+            try:
+                with winreg.OpenKey(hive, uninstall_key, 0, access) as root:
+                    for index in range(winreg.QueryInfoKey(root)[0]):
+                        try:
+                            with winreg.OpenKey(root, winreg.EnumKey(root, index), 0, access) as key:
+                                if not read_string(key, "DisplayName").casefold().startswith("fmod studio"):
+                                    continue
+                                location = read_string(key, "InstallLocation").strip().strip('"')
+                                if location:
+                                    yield Path(os.path.expandvars(location))
+                                command = read_string(key, "UninstallString").strip()
+                                match = re.match(r'^"([^"]+\.exe)"|^(.+?\.exe)(?:\s|$)', command, re.I)
+                                if match:
+                                    executable = Path(os.path.expandvars(match.group(1) or match.group(2)))
+                                    if executable.is_absolute():
+                                        yield executable.parent
+                        except OSError:
+                            continue
+            except OSError:
+                continue
+
+
+def find_fmod_studio(configured: str = "") -> list[dict]:
     candidates: list[Path] = []
     for env_name in ("FMOD_STUDIO_PATH",):
         value = os.environ.get(env_name)
@@ -177,6 +231,7 @@ def find_fmod_studio() -> list[dict]:
     which = shutil.which("fmodstudiocl.exe") or shutil.which("fmodstudiocl")
     if which:
         candidates.append(Path(which))
+    candidates.extend(_registered_fmod_dirs())
 
     roots = [
         Path("C:/Program Files/FMOD SoundSystem"),
@@ -196,13 +251,12 @@ def find_fmod_studio() -> list[dict]:
 
     seen: set[str] = set()
     result: list[dict] = []
-    for item in candidates:
-        try:
-            if not item.is_file():
-                continue
-            key = str(item.resolve()).lower()
-        except OSError:
+    preferred = resolve_fmod_cli(configured)
+    for candidate in ([preferred] if preferred else []) + candidates:
+        item = resolve_fmod_cli(candidate)
+        if item is None:
             continue
+        key = str(item).casefold()
         if key in seen:
             continue
         seen.add(key)
@@ -213,7 +267,7 @@ def find_fmod_studio() -> list[dict]:
                 "modified": _modified(item),
             }
         )
-    result.sort(key=lambda item: item["version"], reverse=True)
+    result.sort(key=lambda item: (item["path"] == str(preferred), item["version"]), reverse=True)
     return result
 
 

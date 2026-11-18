@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wt-voice-forge"
-version = "0.9.20"
+version = "0.9.21"
 description = "WT Voice Forge: a local War Thunder voice-pack creator"
 readme = "README.md"
 requires-python = ">=3.10"

@@ -2,7 +2,7 @@
 
 本地运行的 War Thunder（战雷）语音包制作工具。添加录音、训练音色、生成语音，再打包应用到游戏。
 
-**当前版本：0.9.20 · Windows 10/11 x64 · MIT**
+**当前版本：0.9.21 · Windows 10/11 x64 · MIT**
 
 本项目为非官方社区工具，与 Gaijin Entertainment 无隶属或背书关系。War Thunder 及相关商标归各自权利人所有。
 
@@ -10,8 +10,8 @@
 
 前往 [Releases](https://github.com/bearyluo/WTVoiceForge/releases) 下载：
 
-- `WTVoiceForge-Setup-0.9.20.exe`：安装版，运行后按向导安装。
-- `WTVoiceForge-Portable-0.9.20.zip`：绿色版，解压到可写文件夹后运行其中的 exe；请保留随附许可文件。
+- `WTVoiceForge-Setup-0.9.21.exe`：安装版，运行后按向导安装。
+- `WTVoiceForge-Portable-0.9.21.zip`：绿色版，解压到可写文件夹后运行其中的 exe；请保留随附许可文件。
 - `SHA256SUMS.txt`：文件校验值。
 
 使用发布的程序不需要安装 Python。程序使用本地 WebView2 窗口；缺少 WebView2 时会提供安装入口。安装包尚未代码签名，Windows 可能显示未知发布者或 SmartScreen 提示。

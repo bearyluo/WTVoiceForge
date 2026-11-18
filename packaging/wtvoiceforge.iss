@@ -2,7 +2,7 @@
 ; 使用 Inno Setup 7 编译；卸载默认保留 data 文件夹。
 
 #ifndef AppVersion
-  #define AppVersion "0.9.20"
+  #define AppVersion "0.9.21"
 #endif
 #ifndef OutputDir
   #define OutputDir "..\installer-output"

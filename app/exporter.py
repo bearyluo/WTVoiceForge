@@ -41,12 +41,7 @@ def _now() -> str:
 
 
 def _cli() -> dict | None:
-    configured = config.load_config().fmod_studio_path
-    if configured:
-        path = Path(configured)
-        if path.is_file():
-            return {"path": str(path), "version": path.parent.name}
-    tools = fmod_kit.find_fmod_studio()
+    tools = fmod_kit.find_fmod_studio(config.load_config().fmod_studio_path)
     return tools[0] if tools else None
 
 

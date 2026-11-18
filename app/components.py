@@ -124,7 +124,7 @@ def download_urls(item: dict, source: str = "auto") -> list[str]:
         return [official]
     if source == "mirror":
         return [mirror]
-    return [official, mirror]
+    return [mirror, official]
 
 
 def default_dir(cfg: config.AppConfig | None = None) -> Path:

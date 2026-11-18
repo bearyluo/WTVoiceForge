@@ -290,14 +290,16 @@ function renderSetupRows(data) {
   }
 
   const fmodList = data.fmod_studio || [];
-  setSetupPill("#setup-fmod-pill", fmodList.length ? "已安装" : "未安装", fmodList.length ? "ok" : "warn");
+  setSetupPill("#setup-fmod-pill", fmodList.length ? "已就绪" : "未检测到", fmodList.length ? "ok" : "warn");
   const fmodNote = $("#setup-fmod-note");
   if (fmodNote) {
     const first = fmodList[0];
     fmodNote.textContent = first
       ? `${first.version || "FMOD Studio"} · ${first.path}`
-      : "构建 bank 必需；需要 Firelight 账号，因此从官方页面下载安装。";
+      : "已安装？请指定包含 fmodstudiocl.exe 的目录。首次安装请前往官网。";
   }
+  const fmodInput = $("#fmod-path");
+  if (fmodInput && !fmodInput.value) fmodInput.value = data.config?.fmod_studio_path || "";
 
   const kit = data.kit || {};
   setSetupPill("#setup-kit-pill", kit.valid ? "已就绪" : "未选择", kit.valid ? "ok" : "warn");
@@ -1399,6 +1401,21 @@ async function selectGame(path) {
   }
 }
 
+async function selectFmod(path) {
+  if (!path) {
+    toast("请先选择 FMOD Studio 安装目录", "bad");
+    return;
+  }
+  try {
+    const result = await api("/api/fmod/select", { method: "POST", body: JSON.stringify({ path }) });
+    $("#fmod-path").value = result.config.fmod_studio_path;
+    await loadState();
+    toast("FMOD Studio CLI 已就绪");
+  } catch (error) {
+    toast(error.message, "bad");
+  }
+}
+
 async function selectKit(path) {
   if (!path) {
     toast("请先填入官方 FMOD 工程目录", "bad");
@@ -1818,6 +1835,8 @@ function bindActions() {
 
   $("#game-browse-btn").addEventListener("click", () => browseFolder("#game-path", "选择战雷安装目录"));
   $("#kit-browse-btn").addEventListener("click", () => browseFolder("#kit-path", "选择官方 FMOD 工程目录"));
+  $("#fmod-browse-btn").addEventListener("click", () => browseFolder("#fmod-path", "选择 FMOD Studio 安装目录"));
+  $("#fmod-use-btn").addEventListener("click", () => selectFmod($("#fmod-path").value.trim()));
   $("#engine-browse-btn").addEventListener("click", () => browseFolder("#engine-path", "选择 GPT-SoVITS 主目录"));
   $("#engine-target-browse").addEventListener("click", () =>
     browseFolder("#engine-target", "选择组件安装位置"),

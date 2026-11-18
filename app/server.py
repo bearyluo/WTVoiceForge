@@ -228,7 +228,7 @@ def build_state() -> dict:
         "bank_list": [item.to_dict() for item in bank_items],
         "kit": kit_info,
         "kit_candidates": kit_candidates,
-        "fmod_studio": fmod_kit.find_fmod_studio(),
+        "fmod_studio": fmod_kit.find_fmod_studio(cfg.fmod_studio_path),
         "vgmstream": vgmstream.status(),
         "gpu": gpu.detect_summary(),
         "gpt_sovits": gpt_sovits.status(),
@@ -1323,6 +1323,15 @@ class Handler(BaseHTTPRequestHandler):
                     "bank_list": [item.to_dict() for item in items],
                 }
             )
+            return
+
+        if api_path == "/api/fmod/select":
+            cli = fmod_kit.resolve_fmod_cli(str(payload.get("path", "")))
+            if cli is None:
+                self._send_error_json("没有找到 fmodstudiocl.exe，请选择 FMOD Studio 的安装目录", status=400)
+                return
+            cfg = config.update_config(fmod_studio_path=str(cli))
+            self._send_json({"ok": True, "config": cfg.to_dict()})
             return
 
         if api_path == "/api/kit/select":

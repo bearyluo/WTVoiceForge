@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 APP_NAME = "WT Voice Forge"
-APP_VERSION = "0.9.20"
+APP_VERSION = "0.9.21"
 MILESTONE = "M7.20"
 
 FROZEN = bool(getattr(sys, "frozen", False))

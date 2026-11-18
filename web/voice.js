@@ -125,7 +125,7 @@
     box.innerHTML =
       `<span class="pill warn">未安装</span>` +
       `<p class="hint">一键下载 GPT-SoVITS v4 Windows 整合包（约 7.5GB，装到数据目录）。` +
-      `默认走 Hugging Face 官方源，失败自动切到 hf-mirror 镜像；下载、校验和解压都有进度条。</p>` +
+      `默认走 hf-mirror.com 镜像，失败自动切换官方源；下载、校验和解压都有进度条。</p>` +
       `<p class="hint small">来源：<span class="mono">huggingface.co/lj1995/GPT-SoVITS-windows-package</span>` +
       ` · 镜像：<span class="mono">hf-mirror.com</span></p>` +
       `<button class="btn" type="button" data-install-engine="1">一键下载并安装</button>`;

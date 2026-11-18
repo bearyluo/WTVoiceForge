@@ -155,7 +155,7 @@ class ApiTest(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertTrue(body["ok"])
         self.assertEqual(body["app"], "WT Voice Forge")
-        self.assertEqual(body["version"], "0.9.20")
+        self.assertEqual(body["version"], "0.9.21")
         self.assertEqual(body["milestone"], "M7.20")
 
     def test_components_preflight_route(self) -> None:
@@ -390,6 +390,20 @@ class ApiTest(unittest.TestCase):
         )
         self.assertEqual(status, 400)
         self.assertFalse(body["ok"])
+
+    def test_custom_fmod_folder_updates_environment_state(self) -> None:
+        folder = self.root / "custom tools" / "FMOD Studio 2.02.22"
+        folder.mkdir(parents=True)
+        cli = folder / "fmodstudiocl.exe"
+        cli.touch()
+        status, _ = self.request("/api/fmod/select", method="POST", payload={"path": str(folder)})
+        self.assertEqual(status, 200)
+        status, _ = self.request("/api/fmod/select", method="POST", payload={"path": str(folder.parent)})
+        self.assertEqual(status, 400)
+        status, body = self.request("/api/state")
+        self.assertEqual(status, 200)
+        self.assertEqual(body["config"]["fmod_studio_path"], str(cli.resolve()))
+        self.assertEqual(body["fmod_studio"][0]["path"], str(cli.resolve()))
 
     def test_kit_select_and_state(self) -> None:
         status, body = self.request(

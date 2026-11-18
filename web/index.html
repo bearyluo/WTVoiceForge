@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>环境准备 · WT Voice Forge</title>
-  <link rel="stylesheet" href="/style.css?v=0.9.20d-ui">
-  <link rel="stylesheet" href="/theme.css?v=0.9.20d-ui">
-  <link rel="stylesheet" href="/manual.css?v=0.9.20d-ui">
+  <link rel="stylesheet" href="/style.css?v=0.9.21d-ui">
+  <link rel="stylesheet" href="/theme.css?v=0.9.21d-ui">
+  <link rel="stylesheet" href="/manual.css?v=0.9.21d-ui">
   <link rel="icon" type="image/png" sizes="128x128" href="/app-icon-128.png">
   <meta name="theme-color" content="#e7e2d6">
 </head>
@@ -88,7 +88,7 @@
           <svg class="icon" aria-hidden="true"><use href="#i-trash"></use></svg><span>卸载软件</span>
         </button>
       </div>
-      <div class="side-meta"><span id="version-label">v0.9.20 · M7.20</span><span>LOCAL ONLY</span></div>
+      <div class="side-meta"><span id="version-label">v0.9.21 · M7.20</span><span>LOCAL ONLY</span></div>
     </div>
   </aside>
 
@@ -168,6 +168,14 @@
             <div class="setup-row-main">
               <div class="setup-row-title"><strong>FMOD Studio CLI</strong><span class="pill subtle" id="setup-fmod-pill">检查中</span></div>
               <p class="hint" id="setup-fmod-note">构建 bank 必需；需要 Firelight 账号，因此从官方页面下载。</p>
+              <details class="details">
+                <summary>指定已安装的 FMOD Studio</summary>
+                <div class="field-row">
+                  <input id="fmod-path" class="input" type="text" aria-label="FMOD Studio 路径" placeholder="安装目录或 fmodstudiocl.exe 路径" spellcheck="false">
+                  <button class="btn ghost small" id="fmod-browse-btn" type="button">浏览</button>
+                  <button class="btn small" id="fmod-use-btn" type="button">检测并使用</button>
+                </div>
+              </details>
             </div>
             <div class="setup-row-action"><a class="btn ghost small" href="https://www.fmod.com/download" target="_blank" rel="noreferrer" data-external>官方下载</a></div>
           </div>
@@ -311,7 +319,7 @@
 
                 <div class="field-row tight">
                   <select id="engine-source" class="input select" aria-label="下载源">
-                    <option value="auto">下载源：自动（官方 → 镜像）</option>
+                    <option value="auto">下载源：自动（镜像 → 官方）</option>
                     <option value="official">下载源：Hugging Face 官方</option>
                     <option value="mirror">下载源：hf-mirror 镜像</option>
                   </select>
@@ -332,8 +340,8 @@
 
                 <p class="hint">
                   一键从 Hugging Face 官方仓库 <span class="mono">lj1995/GPT-SoVITS-windows-package</span>
-                  下载 GPT-SoVITS v4 Windows 整合包（约 7.5 GB）；官方源失败会自动切到
-                  <span class="mono">hf-mirror.com</span> 镜像。下载显示速度与剩余时间，
+                  下载 GPT-SoVITS v4 Windows 整合包（约 7.5 GB）；默认使用
+                  <span class="mono">hf-mirror.com</span> 镜像，失败后切换官方源。下载显示速度与剩余时间，
                   SHA-256 校验和解压显示阶段进度，完成后自动解压并启用。
                   只下载运行时，不上传任何游戏素材或本地文件。
                 </p>
@@ -455,8 +463,8 @@
               <div class="quick-engine-copy">
                 <strong>先装 GPT-SoVITS，才能合成和训练</strong>
                 <p class="hint small">
-                  一键下载 v4 Windows 整合包（约 7.5 GB，装到数据目录）；官方源失败会自动切到
-                  <span class="mono">hf-mirror.com</span> 镜像。下载、SHA-256 校验和解压都有进度，
+                  一键下载 v4 Windows 整合包（约 7.5 GB，装到数据目录）；默认使用
+                  <span class="mono">hf-mirror.com</span> 镜像，失败后切换官方源。下载、SHA-256 校验和解压都有进度，
                   只下载运行时，不上传任何游戏素材或本地文件。
                 </p>
               </div>
@@ -1542,10 +1550,10 @@
 </div>
 
 <div id="toast" class="toast" role="status" hidden></div>
-<script src="/app.js?v=0.9.20d-ui"></script>
-<script src="/catalog.js?v=0.9.20d-ui"></script>
-<script src="/quick.js?v=0.9.20d-ui"></script>
-<script src="/voice.js?v=0.9.20d-ui"></script>
-<script src="/packs.js?v=0.9.20d-ui"></script>
+<script src="/app.js?v=0.9.21d-ui"></script>
+<script src="/catalog.js?v=0.9.21d-ui"></script>
+<script src="/quick.js?v=0.9.21d-ui"></script>
+<script src="/voice.js?v=0.9.21d-ui"></script>
+<script src="/packs.js?v=0.9.21d-ui"></script>
 </body>
 </html>
